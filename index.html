@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STREAM BOP BY EASEKID</title>
-<link rel="icon" href="BOPE.jpeg">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -51,8 +50,8 @@
   .artist {
     position: absolute;
     z-index: 5;
-    width: 240px;
-    height: 340px;
+    width: 300px;
+    height: 420px;
     top: 50%; left: 50%;
     transform: translate(-50%, -48%);
   }
@@ -60,12 +59,13 @@
   .artist img {
     width: 100%; height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
     filter: brightness(1.05) contrast(1.08) saturate(0.8);
     mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
   }
 
+  /* ── Card base ── */
   .card {
     position: absolute;
     backdrop-filter: blur(14px);
@@ -166,6 +166,7 @@
   }
   .time { font-size: 9px; color: rgba(255,255,255,0.5); white-space: nowrap; }
 
+  /* ── Platform colours ── */
   .spotify { border: 1.5px solid rgba(29,185,84,0.6); }
   .spotify .card-platform { color: #1DB954; }
   .spotify .progress-fill { background: #1DB954; }
@@ -183,6 +184,7 @@
   .amazon .card-platform { color: #00A8E1; }
   .amazon .progress-fill { background: #00A8E1; }
 
+  /* ── Support card — warm gold/rose tones ── */
   .support-card {
     border: 1.5px solid rgba(255,200,80,0.5);
     background: rgba(255,180,50,0.06);
@@ -234,12 +236,13 @@
     text-align: center;
   }
 
+  /* ── Card positions & animation ── */
   .c1 { width: 200px; top: 10%; left: -10%; animation-duration: 6s; animation-delay: 0s; }
   .c2 { width: 190px; top: 18%; right: -8%; animation-duration: 7s; animation-delay: -2s; filter: blur(0.5px); }
   .c3 { width: 210px; top: 40%; left: -12%; animation-duration: 5.5s; animation-delay: -1s; z-index: 12; }
-  
+  /* c4 = Amazon (was Boomplay position — mid right) */
   .c4 { width: 185px; top: 45%; right: -10%; animation-duration: 8s; animation-delay: -3s; filter: blur(0.5px); }
-  
+  /* c5 = Support card (was Amazon position — bottom left) */
   .c5 { width: 175px; bottom: 22%; left: -6%; animation-duration: 6.5s; animation-delay: -0.5s; filter: blur(1px); z-index: 3; }
   .c7 { width: 130px; top: 5%; right: 20%; animation-duration: 9s; animation-delay: -4s; filter: blur(2px); opacity: 0.6; z-index: 2; }
   .c8 { width: 120px; top: 2%; left: 25%; animation-duration: 10s; animation-delay: -1.5s; filter: blur(3px); opacity: 0.4; z-index: 2; }
@@ -251,6 +254,7 @@
     100% { transform: translateY(0px) rotate(0deg); }
   }
 
+  /* ── Song title ── */
   .song-title {
     position: absolute;
     top: 4%; left: 50%;
@@ -274,12 +278,15 @@
     margin-top: 2px;
   }
 
+  /* ── Ambient orbs ── */
   .orb { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0; }
   .orb1 { width: 200px; height: 200px; background: rgba(30,100,200,0.25); top: 20%; left: 10%; }
   .orb2 { width: 150px; height: 150px; background: rgba(0,200,130,0.15); bottom: 20%; right: 10%; }
   .orb3 { width: 100px; height: 100px; background: rgba(180,80,255,0.12); top: 60%; left: 30%; }
+  /* warm orb near support card */
   .orb4 { width: 120px; height: 80px; background: rgba(255,160,40,0.08); bottom: 25%; left: 5%; }
 
+  /* ── Toast notification ── */
   .toast {
     position: fixed;
     bottom: 30px; left: 50%;
@@ -298,10 +305,6 @@
   }
   .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 </style>
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -321,6 +324,7 @@
     <img id="artistImg" src="" alt="EASEKID">
   </div>
 
+  <!-- SPOTIFY — c3, mid left, in front of artist -->
   <a class="card c3 spotify" href="https://open.spotify.com/track/5nigalsBcTetoEpOyIybBR?si=1629915677684f88" target="_blank" rel="noopener" data-platform="Spotify">
     <div class="card-inner">
       <div class="card-thumb"><img id="t3" src="" alt=""></div>
@@ -339,6 +343,7 @@
     </div>
   </a>
 
+  <!-- APPLE MUSIC — c2, top right -->
   <a class="card c2 apple" href="https://music.apple.com/ng/song/bop/1869267189" target="_blank" rel="noopener" data-platform="Apple Music">
     <div class="card-inner">
       <div class="card-thumb"><img id="t2" src="" alt=""></div>
@@ -357,6 +362,7 @@
     </div>
   </a>
 
+  <!-- YOUTUBE MUSIC — c1, top left -->
   <a class="card c1 youtube" href="https://music.youtube.com/watch?v=kCH5gu3C1Gc&si=whOJi7g8uMePVSKv" target="_blank" rel="noopener" data-platform="YouTube Music">
     <div class="card-inner">
       <div class="card-thumb"><img id="t1" src="" alt=""></div>
@@ -375,6 +381,7 @@
     </div>
   </a>
 
+  <!-- AMAZON MUSIC — c4, mid right (swapped from Boomplay position) -->
   <a class="card c4 amazon" href="https://music.amazon.com/albums/B0GH1KHC6C?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_KbPqhntahC3KsoBYtY5VFh0gQ" target="_blank" rel="noopener" data-platform="Amazon Music">
     <div class="card-inner">
       <div class="card-thumb"><img id="t4" src="" alt=""></div>
@@ -393,7 +400,8 @@
     </div>
   </a>
 
-  <a class="card c5 support-card" href="https://easekid.root.africa/" target="_blank" rel="noopener" data-platform="Support">
+  <!-- SUPPORT CARD — c5, bottom left (was Amazon's slot) -->
+  <a class="card c5 support-card" href="https://paystack.com/pay/easekid-support" target="_blank" rel="noopener" data-platform="Support">
     <div class="support-inner">
       <span class="support-icon">♥</span>
       <div class="support-text">
@@ -404,6 +412,7 @@
     <div class="support-cta">tap to support the artist</div>
   </a>
 
+  <!-- Ghost cards (decorative) -->
   <a class="card c7 spotify" style="opacity:0.5;" href="https://open.spotify.com/track/5nigalsBcTetoEpOyIybBR?si=94ee2f89624346d9" target="_blank" rel="noopener">
     <div class="card-inner">
       <div class="card-info">
@@ -414,7 +423,7 @@
     </div>
   </a>
 
-  <a class="card c8 apple" style="opacity:0.35;" href="https://music.apple.com/ng/song/bop/1869267189" target="_blank" rel="noopener">
+  <a class="card c8 apple" style="opacity:0.35;" href="https://music.apple.com/search?term=BOP+EASEKID" target="_blank" rel="noopener">
     <div class="card-inner">
       <div class="card-info">
         <div class="card-title" style="font-size:10px;">BOP</div>
@@ -478,6 +487,24 @@ function showToast(msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
 }
+</script>
+
+<script>
+function scaleScene() {
+  const scene = document.querySelector('.scene');
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const scale = Math.min(vw / 420, vh / 750, 1);
+  scene.style.transform = 'scale(' + scale + ')';
+  scene.style.transformOrigin = 'center center';
+  scene.style.position = 'fixed';
+  scene.style.top = '50%';
+  scene.style.left = '50%';
+  scene.style.marginTop = '-375px';
+  scene.style.marginLeft = '-210px';
+}
+scaleScene();
+window.addEventListener('resize', scaleScene);
 </script>
 </body>
 </html>
